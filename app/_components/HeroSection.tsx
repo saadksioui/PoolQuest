@@ -77,7 +77,7 @@ const HeroSection = () => {
           variants={itemVariants}
         >
           Comprehensive guides, resources, and practice tools made by{' '}
-          <span className="text-[#00d4ff] font-semibold">ex-poolers</span> for{' '}
+          <span className="text-[#00d4ff] font-semibold">students</span> for{' '}
           <span className="text-[#00ff41] font-semibold">future poolers</span>.
         </motion.p>
 
@@ -98,29 +98,14 @@ const HeroSection = () => {
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </span>
           </motion.button>
-
-          <motion.button
-            className="group glass-morphism px-8 py-4 rounded-full font-bold text-white border border-white/20 hover:border-[#00d4ff] transition-all duration-300 min-w-[200px]"
-            whileHover={{
-              scale: 1.05,
-              backgroundColor: "rgba(0, 212, 255, 0.1)"
-            }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span className="flex items-center justify-center gap-2">
-              <Play size={20} className="group-hover:scale-110 transition-transform" />
-              View Exercises
-            </span>
-          </motion.button>
         </motion.div>
 
         {/* Floating Stats */}
         <motion.div
-          className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-8"
           variants={itemVariants}
         >
           {[
-            { number: '1000+', label: 'Students Helped', color: 'text-[#00ff41]' },
             { number: '95%', label: 'Success Rate', color: 'text-[#00d4ff]' },
             { number: '24/7', label: 'Community Support', color: 'text-white' }
           ].map((stat, index) => (

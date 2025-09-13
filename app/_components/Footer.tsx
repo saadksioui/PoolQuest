@@ -3,7 +3,8 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Github, Twitter, Disc as Discord, Mail, Heart, ExternalLink, Code, BookOpen, Users, Zap } from 'lucide-react';
+import { Github, Mail, Heart, ExternalLink, Code, BookOpen, Users, Zap } from 'lucide-react';
+import { FaDiscord } from 'react-icons/fa';
 
 const Footer = () => {
   const ref = useRef(null);
@@ -19,21 +20,15 @@ const Footer = () => {
   const socialLinks = [
     {
       icon: Github,
-      href: 'https://github.com/piscine-survival-hub',
+      href: 'https://github.com/saadksioui/PoolQuest',
       label: 'GitHub',
       color: 'hover:text-white'
     },
     {
-      icon: Discord,
+      icon: FaDiscord,
       href: '#',
       label: 'Discord Community',
       color: 'hover:text-[#5865F2]'
-    },
-    {
-      icon: Twitter,
-      href: '#',
-      label: 'Twitter',
-      color: 'hover:text-[#1DA1F2]'
     },
     {
       icon: Mail,

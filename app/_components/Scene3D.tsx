@@ -6,8 +6,27 @@ import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-const GeometricShape = ({ position, color, scale = 1 }) => {
-  const meshRef = useRef();
+// Ensure TypeScript recognizes JSX intrinsic elements for three-fiber
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      bufferGeometry: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+      bufferAttribute: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & { args?: any };
+      pointsMaterial: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & { color?: string; size?: number; transparent?: boolean; opacity?: number };
+      octahedronGeometry: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & { args?: any };
+      meshStandardMaterial: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & { color?: string; transparent?: boolean; opacity?: number; wireframe?: boolean; emissive?: string; emissiveIntensity?: number };
+    }
+  }
+}
+
+type GeometricShapeProps = {
+  position: [number, number, number];
+  color: string;
+  scale?: number;
+};
+
+const GeometricShape = ({ position, color, scale = 1 }: GeometricShapeProps) => {
+  const meshRef = useRef<THREE.Mesh>(null);
 
   useFrame((state) => {
     if (meshRef.current) {
@@ -34,7 +53,7 @@ const GeometricShape = ({ position, color, scale = 1 }) => {
 };
 
 const Particles = () => {
-  const points = useRef();
+  const points = useRef<THREE.Points>(null);
   const particleCount = 100;
 
   const positions = new Float32Array(particleCount * 3);
@@ -53,9 +72,7 @@ const Particles = () => {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          count={particleCount}
-          array={positions}
-          itemSize={3}
+          args={[positions, 3]}
         />
       </bufferGeometry>
       <pointsMaterial
